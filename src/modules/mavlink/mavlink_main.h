@@ -77,6 +77,9 @@
 #include <uORB/topics/telemetry_status.h>
 #include <uORB/uORB.h>
 
+#include <Plat4m_Core/Uart.h>
+#include <Plat4m_Core/ComInterface.h>
+
 #include "mavlink_command_sender.h"
 #include "mavlink_messages.h"
 #include "mavlink_orb_subscription.h"
@@ -576,9 +579,16 @@ private:
 
 	int			_uart_fd{-1};
 
+
+	Plat4m::Uart*		_uart{0};
+	Plat4m::Uart::Config    _uart_config;
+	Plat4m::ComInterface&   _com_interface;
+
 	int			_baudrate{57600};
 	int			_datarate{1000};		///< data rate for normal streams (attitude, position, etc.)
 	float			_rate_mult{1.0f};
+
+	Plat4m::ComInterface&   _com
 
 	bool			_radio_status_available{false};
 	bool			_radio_status_critical{false};

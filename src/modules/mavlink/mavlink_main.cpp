@@ -581,7 +581,9 @@ Mavlink::mavlink_open_uart(int baud, const char *uart_name, bool force_flow_cont
 	}
 
 	/* open uart */
-	_uart_fd = ::open(uart_name, O_RDWR | O_NOCTTY);
+	// _uart_fd = ::open(uart_name, O_RDWR | O_NOCTTY);
+
+	_uart = new Uart();
 
 	/* if this is a config link, stay here and wait for it to open */
 	if (_uart_fd < 0 && _mode == MAVLINK_MODE_CONFIG) {
